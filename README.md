@@ -1,4 +1,4 @@
-# Windows 10 Vagrant Box ready for DNI electrónico (electronic Spanish National ID)
+# Windows 10 Vagrant Box ready for DNI electrónico (Spain's electronic National ID)
 
 This repo contains Vagrantfile and necessary elements to build a Windows 10 Vagrant Box ready for using an USB reader that accepts electronic Spanish ID. This is intended for people who do not have to physlical Windows machine but that require accessing Spain's on-line administration (at National, Regional or local level) making use of his/her electronic DNI (National ID)
 
