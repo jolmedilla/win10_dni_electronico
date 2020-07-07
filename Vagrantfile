@@ -15,13 +15,13 @@ Vagrant.configure("2") do |config|
   config.vm.box = "tas50/windows_10"
   config.vm.provider "virtualbox" do |vb|
     vb.customize ["modifyvm", :id, "--usb", "on"]
+    vb.customize ["modifyvm", :id, "--usbehci", "on"]
     vb.customize ["usbfilter", "add", "0",
         "--target", :id,
         "--name", "Generic EMV Smartcard Reader",
         "--vendorid", "0x058f",
         "--productid","0x9540"]
     vb.memory = 4096
-    vb.gui = true
   end
   config.vm.provider "parallels" do |prl|
     prl.check_guest_tools = true
