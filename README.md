@@ -13,3 +13,13 @@ This box includes the following elements:
 * Autofirma (digital signature application to sign PDF's and so on)
 
 * Drivers for the USB SmartCard readers compatible with DNIe 3.0
+
+## Usage
+
+You have to use the VirtualBox GUI in order to access the graphic console, if you access the box via Remote Desktop you will not have access to the SmarCard Reader, this is a security configuration that comes with every Windows OS. The Vagrantfile provided here enables the VirtualBox gui precisely for that purpose.
+
+In order to make use of the DNIe from Firefox browser you have to do a manual configuration:
+
+1. Within Firefox go to Options -> Privacy and Security -> Security Devices
+
+2. Click on `Load`, type any name (v.g. `DNIe`) and browse to choose the following dll file: `C:\Windows\System32\DNIeCMx64.dll`
