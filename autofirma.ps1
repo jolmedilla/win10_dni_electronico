@@ -1,4 +1,4 @@
-function Install-Something
+function Install-WithZippedExe
 {
     param( [string]$Source, [string]$Installer, [string[]]$Arguments )
     $LocalTempDir = $env:TEMP; 
@@ -6,6 +6,9 @@ function Install-Something
 
     try {
         (new-object    System.Net.WebClient).DownloadFile($Source, $output); 
+        Expand-Archive -Path $output -DestinationPath "$LocalTempDir\ExpandedArchive"
+        $file = Get-ChildItem "$LocalTempDir\ExpandedArchive\*.exe"
+        $output = $file.FullName
         $p = Start-Process $output -ArgumentList $Arguments -PassThru -Verb runas; 
 
         while (!$p.HasExited) { Start-Sleep -Seconds 1 }
@@ -19,6 +22,4 @@ function Install-Something
 
 }
 
-Install-Something -source "http://dl.google.com/chrome/install/latest/chrome_installer.exe" -installer "ChromeInstaller.exe" -arguments "/silent","/install"
-Install-Something -source "https://download.mozilla.org/?product=firefox-latest&os=win64&lang=en-US"  -installer "FirefoxInstaller.exe" -arguments "/S"
-Install-Something -source "https://www.dnielectronico.es/descargas/CSP_para_Sistemas_Windows/Windows_64_bits/DNIe_v14_1_0(64bits).exe"  -installer "DNIeInstaller.exe" -arguments "/la","/S","/v","/qn"
+Install-WithZippedExe -source "https://estaticos.redsara.es/comunes/autofirma/currentversion/AutoFirma64.zip" -installer "AutoFirma64.zip" -arguments "/S"

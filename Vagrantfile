@@ -12,16 +12,28 @@ Vagrant.configure("2") do |config|
 
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://vagrantcloud.com/search.
+  unless Vagrant.has_plugin?("vagrant-vbguest")
+    puts 'Installing vagrant-vbguest Plugin...'
+    system('vagrant plugin install vagrant-vbguest')
+  end
+ 
+  unless Vagrant.has_plugin?("vagrant-reload")
+    puts 'Installing vagrant-reload Plugin...'
+    system('vagrant plugin install vagrant-reload')
+  end
+  config.winrm.timeout = 21600
   config.vm.box = "tas50/windows_10"
   config.vm.provider "virtualbox" do |vb|
     vb.customize ["modifyvm", :id, "--usb", "on"]
     vb.customize ["modifyvm", :id, "--usbehci", "on"]
+    vb.customize ["modifyvm", :id, "--vram", "128"]
     vb.customize ["usbfilter", "add", "0",
         "--target", :id,
         "--name", "Generic EMV Smartcard Reader",
         "--vendorid", "0x058f",
         "--productid","0x9540"]
-    vb.memory = 4096
+    vb.memory = 2048
+    vb.gui = true
   end
   config.vm.provider "parallels" do |prl|
     prl.check_guest_tools = true
@@ -81,5 +93,7 @@ Vagrant.configure("2") do |config|
   #   apt-get update
   #   apt-get install -y apache2
   # SHELL
-  config.vm.provision "shell", path: "provision.ps1"
+  config.vm.provision "browsers_and_drivers", type: "shell", path: "provision.ps1"
+  config.vm.provision :reload
+  config.vm.provision "autofirma", type: "shell", path: "autofirma.ps1"
 end
