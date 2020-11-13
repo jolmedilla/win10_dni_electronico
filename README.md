@@ -24,4 +24,4 @@ In order to make use of the DNIe from Firefox browser you have to do a manual co
 
 2. Within Firefox go to Options -> Privacy and Security -> Security Devices
 
-3. Click on `Load`, type any name (v.g. `DNIe`) and browse to choose the following dll file: `C:\Windows\System32\DNIeCMx64.dll`
+3. Click on `Load`, type any name (v.g. `DNIe`) and browse to choose one of the following dll files: `C:\Windows\System32\DNIeCMx64.dll` or `C:\Windows\System32\DNIe_P11_x64.dll`
