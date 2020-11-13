@@ -20,6 +20,8 @@ You have to use the VirtualBox GUI in order to access the graphic console, if yo
 
 In order to make use of the DNIe from Firefox browser you have to do a manual configuration:
 
-1. Within Firefox go to Options -> Privacy and Security -> Security Devices
+1. With the DNI inserted in the reader connect this one to the USB port of your host machine
 
-2. Click on `Load`, type any name (v.g. `DNIe`) and browse to choose the following dll file: `C:\Windows\System32\DNIeCMx64.dll`
+2. Within Firefox go to Options -> Privacy and Security -> Security Devices
+
+3. Click on `Load`, type any name (v.g. `DNIe`) and browse to choose the following dll file: `C:\Windows\System32\DNIeCMx64.dll`
